@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { DetectionPage } from './DetectionPage';
 
 const drawerWidth = 300;
 
@@ -95,7 +96,7 @@ function App() {
             <IconButton edge="start" className={clsx(classes.menuButton, open && classes.hide)} onClick={handleDrawerOpen} color="inherit" aria-label="menu">
                 <MenuIcon/>
             </IconButton>
-            <Typography variant="h6" noWrap>
+            <Typography id="pageTitle" variant="h6" noWrap>
                 Project
             </Typography>
             </Toolbar>
@@ -131,7 +132,7 @@ function App() {
             <div> {/* CONTENT PAGES HERE */}
               <Switch>
                 <Route exact path="/">
-                  <Home/>
+                  <DetectionPage/>
                 </Route>
                 <Route path="/page2">
                   <Page2/>
@@ -145,12 +146,6 @@ function App() {
         </main>
       </Router>
     </div>
-  );
-}
-
-function Home() {
-  return (
-    <div>home</div>
   );
 }
 
