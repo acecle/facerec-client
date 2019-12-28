@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/facerec-client/static/css/main.d1b05096.chunk.css",
+    "main.js": "/facerec-client/static/js/main.c9b5de81.chunk.js",
+    "main.js.map": "/facerec-client/static/js/main.c9b5de81.chunk.js.map",
+    "runtime-main.js": "/facerec-client/static/js/runtime-main.28cb0295.js",
+    "runtime-main.js.map": "/facerec-client/static/js/runtime-main.28cb0295.js.map",
+    "static/js/2.8fbbdf1c.chunk.js": "/facerec-client/static/js/2.8fbbdf1c.chunk.js",
+    "static/js/2.8fbbdf1c.chunk.js.map": "/facerec-client/static/js/2.8fbbdf1c.chunk.js.map",
+    "index.html": "/facerec-client/index.html",
+    "precache-manifest.6d3702b84ccc83ac0482cc4a26863578.js": "/facerec-client/precache-manifest.6d3702b84ccc83ac0482cc4a26863578.js",
+    "service-worker.js": "/facerec-client/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/facerec-client/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.8fbbdf1c.chunk.js.LICENSE": "/facerec-client/static/js/2.8fbbdf1c.chunk.js.LICENSE",
+    "static/media/logo.svg": "/facerec-client/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.28cb0295.js",
+    "static/js/2.8fbbdf1c.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.c9b5de81.chunk.js"
+  ]
+}
