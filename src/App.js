@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div className="root">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <AppBar position="fixed" className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
         })}>
