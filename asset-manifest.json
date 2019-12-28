@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/facerec-client/static/css/main.27fd15f6.chunk.css",
-    "main.js": "/facerec-client/static/js/main.11d94201.chunk.js",
-    "main.js.map": "/facerec-client/static/js/main.11d94201.chunk.js.map",
+    "main.js": "/facerec-client/static/js/main.d05ab73b.chunk.js",
+    "main.js.map": "/facerec-client/static/js/main.d05ab73b.chunk.js.map",
     "runtime-main.js": "/facerec-client/static/js/runtime-main.28cb0295.js",
     "runtime-main.js.map": "/facerec-client/static/js/runtime-main.28cb0295.js.map",
     "static/js/2.60b9a869.chunk.js": "/facerec-client/static/js/2.60b9a869.chunk.js",
     "static/js/2.60b9a869.chunk.js.map": "/facerec-client/static/js/2.60b9a869.chunk.js.map",
     "index.html": "/facerec-client/index.html",
-    "precache-manifest.15d137c4af526573426a5bef336866f4.js": "/facerec-client/precache-manifest.15d137c4af526573426a5bef336866f4.js",
+    "precache-manifest.c42cc2a27656db0b8ff776a85f901265.js": "/facerec-client/precache-manifest.c42cc2a27656db0b8ff776a85f901265.js",
     "service-worker.js": "/facerec-client/service-worker.js",
     "static/css/main.27fd15f6.chunk.css.map": "/facerec-client/static/css/main.27fd15f6.chunk.css.map",
     "static/js/2.60b9a869.chunk.js.LICENSE": "/facerec-client/static/js/2.60b9a869.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.28cb0295.js",
     "static/js/2.60b9a869.chunk.js",
     "static/css/main.27fd15f6.chunk.css",
-    "static/js/main.11d94201.chunk.js"
+    "static/js/main.d05ab73b.chunk.js"
   ]
 }
