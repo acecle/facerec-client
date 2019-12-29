@@ -12,7 +12,7 @@ class WebcamDetection extends Component {
         const MODEL_URL = process.env.PUBLIC_URL + '/models';
         Promise.all(
             [
-                faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL) //faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL)
+                faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL) //faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL)
             ]
         ).then(this.printLoaded())
     }
@@ -30,8 +30,8 @@ class WebcamDetection extends Component {
                 console.error(error)
             });
             
-            this.videoTag.current.width = 800;
-            this.videoTag.current.height = 600;
+            //this.videoTag.current.width = 800;
+            //this.videoTag.current.height = 600;
             this.videoTag.current.addEventListener('play', this)
         } else {
             alert('Camera not supported in your browser!')
@@ -45,10 +45,10 @@ class WebcamDetection extends Component {
     handleEvent(e) {
         //const displaySize = {width: this.videoTag.current.width, height: this.videoTag.current.height};
         this.intervalID = setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(this.videoTag.current, new faceapi.SsdMobilenetv1Options()); //faceapi.TinyFaceDetectorOptions()
+            const detections = await faceapi.detectAllFaces(this.videoTag.current, new faceapi.TinyFaceDetectorOptions()); //faceapi.SsdMobilenetv1Options()
             this.textRef.current.innerText = "found: " + detections.length + " faces";
             //const resizedDetections = faceapi.resizeResults(detections, displaySize);
-        }, 500)
+        }, 1000)
     }
 
     render() {
