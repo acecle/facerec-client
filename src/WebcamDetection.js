@@ -9,6 +9,7 @@ class WebcamDetection extends Component {
         super(props);
         this.videoTag = React.createRef();
         this.textRef = React.createRef();
+        this.imageTag = React.createRef();
         const MODEL_URL = process.env.PUBLIC_URL + '/models';
         Promise.all(
             [
@@ -30,8 +31,8 @@ class WebcamDetection extends Component {
                 console.error(error)
             });
             
-            //this.videoTag.current.width = 800;
-            //this.videoTag.current.height = 600;
+            this.videoTag.current.width = 640;
+            this.videoTag.current.height = 480;
             this.videoTag.current.addEventListener('play', this)
         } else {
             alert('Camera not supported in your browser!')
@@ -43,12 +44,24 @@ class WebcamDetection extends Component {
     }
 
     handleEvent(e) {
-        //const displaySize = {width: this.videoTag.current.width, height: this.videoTag.current.height};
+        const displaySize = {width: this.videoTag.current.width, height: this.videoTag.current.height};
         this.intervalID = setInterval(async () => {
             const detections = await faceapi.detectAllFaces(this.videoTag.current, new faceapi.TinyFaceDetectorOptions()); //faceapi.SsdMobilenetv1Options()
             this.textRef.current.innerText = "found: " + detections.length + " faces";
-            //const resizedDetections = faceapi.resizeResults(detections, displaySize);
-        }, 1000)
+
+            if(detections.length > 0) {
+                const resizedDetections = faceapi.resizeResults(detections, displaySize);
+
+                const box = resizedDetections[0]._box;
+
+                const regionsToExtract = [
+                    new faceapi.Rect(box.left - 50, box.top - 50, box.width + 100, box.height + 100)
+                ]
+                const canvases = await faceapi.extractFaces(this.videoTag.current, regionsToExtract)
+                this.imageTag.current.src = canvases[0].toDataURL();
+            }
+            
+        }, 200)
     }
 
     render() {
@@ -56,6 +69,7 @@ class WebcamDetection extends Component {
             <div>
                 <video ref={this.videoTag} autoPlay/>
                 <p ref={this.textRef}>found: 0 faces</p>
+                <img ref={this.imageTag}></img>
             </div>
         )
     }
