@@ -4,12 +4,15 @@ import * as faceapi from 'face-api.js';
 class WebcamDetection extends Component {
 
     intervalID = 0;
+    videoWidth = 400;
+    videoHeight = 400;
 
     constructor(props) {
         super(props);
         this.videoTag = React.createRef();
         this.textRef = React.createRef();
         this.imageTag = React.createRef();
+
         const MODEL_URL = process.env.PUBLIC_URL + '/models';
         Promise.all(
             [
@@ -19,20 +22,21 @@ class WebcamDetection extends Component {
     }
 
     printLoaded() {
-        console.log("Loaded")
+        //load loading icon on start
+        //remove loading icon
     }
 
     componentDidMount() {
         if(!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
             navigator.mediaDevices
-            .getUserMedia({video: {frameRate: {max: 30}}, audio: false})
+            .getUserMedia({video: {width: this.videoWidth, height: this.videoHeight, frameRate: {max: 30}, facingMode: "user"}, audio: false})
             .then(stream=>this.videoTag.current.srcObject = stream)
             .catch(error => {
                 console.error(error)
             });
             
-            this.videoTag.current.width = 640;
-            this.videoTag.current.height = 480;
+            this.videoTag.current.width = this.videoWidth;
+            this.videoTag.current.height = this.videoHeight;
             this.videoTag.current.addEventListener('play', this)
         } else {
             alert('Camera not supported in your browser!')
@@ -61,7 +65,7 @@ class WebcamDetection extends Component {
                 this.imageTag.current.src = canvases[0].toDataURL();
             }
             
-        }, 200)
+        }, 500)
     }
 
     render() {
@@ -69,7 +73,7 @@ class WebcamDetection extends Component {
             <div>
                 <video ref={this.videoTag} autoPlay/>
                 <p ref={this.textRef}>found: 0 faces</p>
-                <img ref={this.imageTag}></img>
+                <img ref={this.imageTag} alt="face"></img>
             </div>
         )
     }
