@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as faceapi from 'face-api.js';
+import axios from 'axios';
 
 class WebcamDetection extends Component {
 
@@ -62,10 +63,49 @@ class WebcamDetection extends Component {
                     new faceapi.Rect(box.left - 50, box.top - 50, box.width + 100, box.height + 100)
                 ]
                 const canvases = await faceapi.extractFaces(this.videoTag.current, regionsToExtract)
-                this.imageTag.current.src = canvases[0].toDataURL();
+                let imageData = canvases[0].toDataURL();
+                this.imageTag.current.src = imageData;
+
+                //post requesting the data blob
+
+                let blobData = this.dataURItoBlob(imageData);
+                let file = new File([blobData], "image.png")
+
+                let bodyFormData = new FormData();
+                bodyFormData.append('sampleFile', file, "image.png");
+
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:9000/testAPI/upload',
+                    data: bodyFormData,
+                    headers: {
+                        'Content-Type': File
+                    }
+                }).then(function(response) {
+                    console.log(response.data);
+                }).catch(function (response) {
+                    console.log(response);
+                });
             }
             
         }, 500)
+    }
+
+    dataURItoBlob(dataURI) { 
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+        else
+            byteString = unescape(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ia], {type:mimeString});
     }
 
     render() {
