@@ -66,33 +66,34 @@ class WebcamDetection extends Component {
                 let imageData = canvases[0].toDataURL();
                 this.imageTag.current.src = imageData;
 
-                //post requesting the data blob
-
-                let blobData = this.dataURItoBlob(imageData);
-                let file = new File([blobData], "image.png")
-
-                let bodyFormData = new FormData();
-                bodyFormData.append('sampleFile', file, "image.png");
-
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:9000/testAPI/upload',
-                    data: bodyFormData,
-                    headers: {
-                        'Content-Type': File
-                    }
-                }).then(function(response) {
-                    console.log(response.data);
-                }).catch(function (response) {
-                    console.log(response);
-                });
+                this.sendImageToServer(imageData);
             }
-            
         }, 500)
     }
 
+    sendImageToServer(imageData) {
+        let blobData = this.dataURItoBlob(imageData);
+        let file = new File([blobData], "image.png")
+
+        let bodyFormData = new FormData();
+        bodyFormData.append('sampleFile', file, "image.png");
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:9000/testAPI/upload',
+            data: bodyFormData,
+            headers: {
+                'Content-Type': File
+            }
+        }).then(function(response) {
+            console.log(response.data);
+        }).catch(function (response) {
+            console.log(response);
+        });
+    }
+
     dataURItoBlob(dataURI) { //https://gist.github.com/poeticninja/0e4352bc80bc34fad6f7
-        
+
         // convert base64/URLEncoded data component to raw binary data held in a string
         var byteString;
         if (dataURI.split(',')[0].indexOf('base64') >= 0)
