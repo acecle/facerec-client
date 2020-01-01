@@ -91,7 +91,8 @@ class WebcamDetection extends Component {
         }, 500)
     }
 
-    dataURItoBlob(dataURI) { 
+    dataURItoBlob(dataURI) { //https://gist.github.com/poeticninja/0e4352bc80bc34fad6f7
+        
         // convert base64/URLEncoded data component to raw binary data held in a string
         var byteString;
         if (dataURI.split(',')[0].indexOf('base64') >= 0)
