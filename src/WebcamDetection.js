@@ -80,7 +80,7 @@ class WebcamDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'http://localhost:9000/testAPI/upload',
+            url: 'http://localhost:5001/',
             data: bodyFormData,
             headers: {
                 'Content-Type': File
