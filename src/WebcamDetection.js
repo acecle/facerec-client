@@ -76,7 +76,7 @@ class WebcamDetection extends Component {
         let file = new File([blobData], "image.png")
 
         let bodyFormData = new FormData();
-        bodyFormData.append('sampleFile', file, "image.png");
+        bodyFormData.append('file', file, "image.png");
 
         axios({
             method: 'post',
