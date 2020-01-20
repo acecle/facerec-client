@@ -13,6 +13,7 @@ class WebcamDetection extends Component {
         this.videoTag = React.createRef();
         this.textRef = React.createRef();
         this.imageTag = React.createRef();
+        this.faceTextRef = React.createRef();
 
         const MODEL_URL = process.env.PUBLIC_URL + '/models';
         Promise.all(
@@ -85,11 +86,12 @@ class WebcamDetection extends Component {
             headers: {
                 'Content-Type': File
             }
-        }).then(function(response) {
-            console.log(response.data);
-        }).catch(function (response) {
+        }).then((response) => {
+            console.log(response.data)
+            this.faceTextRef.current.innerText = response.data;
+        }).catch((response) => {
             console.log(response);
-        });
+        })
     }
 
     dataURItoBlob(dataURI) { //https://gist.github.com/poeticninja/0e4352bc80bc34fad6f7
@@ -116,6 +118,7 @@ class WebcamDetection extends Component {
                 <video ref={this.videoTag} autoPlay/>
                 <p ref={this.textRef}>found: 0 faces</p>
                 <img ref={this.imageTag} alt="face"></img>
+                <p ref={this.faceTextRef}>Unknown Face</p>
             </div>
         )
     }
