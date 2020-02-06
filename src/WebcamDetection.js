@@ -69,7 +69,7 @@ class WebcamDetection extends Component {
 
                 this.sendImageToServer(imageData);
             }
-        }, 500)
+        }, 1000)
     }
 
     sendImageToServer(imageData) {
@@ -82,7 +82,7 @@ class WebcamDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'http://localhost:5001/',
+            url: 'https://acecle-facerec-test-server.herokuapp.com/',
             data: bodyFormData,
             headers: {
                 'Content-Type': File
