@@ -53,7 +53,10 @@ class WebcamDetection extends Component {
         const displaySize = {width: this.videoTag.current.width, height: this.videoTag.current.height};
         this.intervalID = setInterval(async () => {
             const detections = await faceapi.detectAllFaces(this.videoTag.current, new faceapi.TinyFaceDetectorOptions()); //faceapi.SsdMobilenetv1Options()
-            this.textRef.current.innerText = "found: " + detections.length + " faces";
+            
+            if(this.textRef !== null) {
+                this.textRef.current.innerText = "found: " + detections.length + " faces";
+            }
 
             if(detections.length > 0) {
                 const resizedDetections = faceapi.resizeResults(detections, displaySize);
@@ -82,7 +85,7 @@ class WebcamDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'https://acecle-facerec-test-server.herokuapp.com/',
+            url: 'https://acecle-facerec-test-server.herokuapp.com/', 
             data: bodyFormData,
             headers: {
                 'Content-Type': File

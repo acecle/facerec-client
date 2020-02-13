@@ -14,6 +14,7 @@ import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { DetectionPage } from './DetectionPage';
+import { UploadPage } from './UploadPage';
 
 const drawerWidth = 300;
 
@@ -135,7 +136,7 @@ function App() {
                   <DetectionPage/>
                 </Route>
                 <Route path="/page2">
-                  <Page2/>
+                  <UploadPage/>
                 </Route>
                 <Route path="/page3">
                   <Page3/>
@@ -146,12 +147,6 @@ function App() {
         </main>
       </Router>
     </div>
-  );
-}
-
-function Page2() {
-  return (
-    <div>page 2</div>
   );
 }
 
