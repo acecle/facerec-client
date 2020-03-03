@@ -15,6 +15,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { DetectionPage } from './DetectionPage';
 import { UploadPage } from './UploadPage';
+import { RecognitionPage } from './RecognitionPage';
 
 const drawerWidth = 300;
 
@@ -139,7 +140,7 @@ function App() {
                   <UploadPage/>
                 </Route>
                 <Route path="/page3">
-                  <Page3/>
+                  <RecognitionPage/>
                 </Route>
               </Switch>
             </div>
@@ -147,12 +148,6 @@ function App() {
         </main>
       </Router>
     </div>
-  );
-}
-
-function Page3() {
-  return (
-    <div>page 3</div>
   );
 }
 

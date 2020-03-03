@@ -39,7 +39,7 @@ class UploadDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'https://acecle-facerec-test-server.herokuapp.com/upload',
+            url: 'https://acecle-facerec-test-server.herokuapp.com/upload', //http://localhost:5000/upload
             data: bodyFormData,
             headers: {
                 'Content-Type': File
