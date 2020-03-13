@@ -90,7 +90,7 @@ class WebcamDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'http://localhost:5000', //https://acecle-facerec-test-server.herokuapp.com/
+            url: 'https://acecle-facerec-test-server.herokuapp.com/', //http://localhost:5000
             data: bodyFormData,
             headers: {
                 'Content-Type': File
