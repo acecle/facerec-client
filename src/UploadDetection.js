@@ -5,12 +5,15 @@ class UploadDetection extends Component {
 
     videoWidth = 400;
     videoHeight = 400;
+    currentImage = null;
 
     constructor(props) {
         super(props);
         this.videoTag = React.createRef();
         this.textTag = React.createRef();
         this.outputTag = React.createRef();
+        
+        this.state = {isPlaying: true};
     }
 
     componentDidMount() {
@@ -29,13 +32,13 @@ class UploadDetection extends Component {
         }
     }
 
-    sendImageToServer(imageData, value) {
+    sendImageToServer(imageData) {
         let blobData = this.dataURItoBlob(imageData);
         let file = new File([blobData], "image.png")
 
         let bodyFormData = new FormData();
         //let name = new Date().toLocaleString() + ".png";
-        bodyFormData.append('file', file, value);
+        bodyFormData.append('file', file, "value"); //TODO: change value back to variable passed to function after tests complete
 
         axios({
             method: 'post',
@@ -46,7 +49,12 @@ class UploadDetection extends Component {
             }
         }).then((response) => {
             console.log(response.data)
-            this.outputTag.current.innerText = response.data;
+            if(response.data === "True") {
+                this.outputTag.current.innerText = "Success! Your code is: " + response.data;
+            } else {
+                this.outputTag.current.innerText = "Failed to add user to the system, please try again!";
+            }
+            
         }).catch((response) => {
             console.log(response);
         })
@@ -72,30 +80,46 @@ class UploadDetection extends Component {
 
     submit = e => {
         e.preventDefault();
-        let value = this.textTag.value;
-        console.log(value);
+        // let value = this.textTag.value;
+        // console.log(value);
 
-        //get image screen
-        //send to server along with name
-
-        let canvas = document.createElement('canvas');
-        canvas.width = this.videoWidth;
-        canvas.height = this.videoHeight;
-        let ctx = canvas.getContext('2d');
-        ctx.drawImage(this.videoTag.current, 0, 0, canvas.width, canvas.height);
-        let dataURI = canvas.toDataURL('image/png');
-
-        this.sendImageToServer(dataURI, value)
+        if(this.currentImage !== null && this.state.isPlaying === false) {
+            this.sendImageToServer(this.currentImage);
+        }
         
     }
 
+    picture = e => {
+        if(this.state.isPlaying) {
+            this.videoTag.current.pause();
+            this.setState({isPlaying: false});
+
+            let canvas = document.createElement('canvas');
+            canvas.width = this.videoWidth;
+            canvas.height = this.videoHeight;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(this.videoTag.current, 0, 0, canvas.width, canvas.height);
+            let dataURI = canvas.toDataURL('image/png');
+            this.currentImage = dataURI;
+
+        } else {
+            this.videoTag.current.play();
+            this.setState({isPlaying: true});
+        }
+    }
+
     render() {
+        
+        const isPlaying = this.state.isPlaying;
         return (
             <div>
                 <video ref={this.videoTag} autoPlay/>
-                <input type="text" ref={e => this.textTag = e} />
+                <br></br>
+                <button onClick={this.picture}>{isPlaying ? 'Take Picture' : 'Take Again'}</button>
+                <br/><br/>
+                {/* <input type="text" ref={e => this.textTag = e} /> */}
                 <button onClick={this.submit}>Submit</button>
-                <p ref={this.outputTag}>Click submit to send an image</p>
+                <p ref={this.outputTag}></p>
             </div>
         )
     }

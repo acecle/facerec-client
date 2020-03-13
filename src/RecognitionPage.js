@@ -43,7 +43,7 @@ export function RecognitionPage () {
 function GetResponses() {
     axios({
         method: 'get',
-        url: 'https://acecle-facerec-test-server.herokuapp.com/recognitions', //http://localhost:5000/recognitions
+        url: 'http://localhost:5000/recognitions', //https://acecle-facerec-test-server.herokuapp.com/recognitions
     }).then((response) => {
         console.log(response.data)
     }).catch((response) => {

@@ -30,7 +30,7 @@ export function UploadPage () {
         
         <div className="holder">   
             <Paper className={classes.paperTest}>
-                <Typography variant="h5" noWrap>Upload Page</Typography>
+                <Typography variant="h5" noWrap>Add User</Typography>
                 <Divider className ={classes.topDivider}/>
                 <UploadDetection/>
             </Paper>

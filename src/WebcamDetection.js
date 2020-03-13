@@ -29,6 +29,9 @@ class WebcamDetection extends Component {
     }
 
     componentDidMount() {
+        let variable = prompt("Enter your code: ");
+        console.log(variable)
+
         if(!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
             navigator.mediaDevices
             .getUserMedia({video: {width: this.videoWidth, height: this.videoHeight, frameRate: {max: 30}, facingMode: "user"}, audio: false})
@@ -55,7 +58,7 @@ class WebcamDetection extends Component {
             const detections = await faceapi.detectAllFaces(this.videoTag.current, new faceapi.TinyFaceDetectorOptions()); //faceapi.SsdMobilenetv1Options()
             
             try {
-                this.textRef.current.innerText = "found: " + detections.length + " faces";
+                this.textRef.current.innerText = "Found: " + detections.length;
             } catch (error) {
                 //TODO FIX THIS
             }
@@ -87,7 +90,7 @@ class WebcamDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'https://acecle-facerec-test-server.herokuapp.com/', //http://localhost:5000
+            url: 'http://localhost:5000', //https://acecle-facerec-test-server.herokuapp.com/
             data: bodyFormData,
             headers: {
                 'Content-Type': File
@@ -122,8 +125,8 @@ class WebcamDetection extends Component {
         return (
             <div>
                 <video ref={this.videoTag} autoPlay/>
-                <p ref={this.textRef}>found: 0 faces</p>
-                <img ref={this.imageTag} alt="face"></img>
+                <p ref={this.textRef}>Found: 0</p>
+                <img ref={this.imageTag} alt="face" hidden></img>
                 <p ref={this.faceTextRef}>Unknown Face</p>
             </div>
         )

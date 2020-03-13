@@ -112,18 +112,18 @@ function App() {
             </div>
             <Divider />
             <List>
-              <ListItem button component={Link} to="/">
+            <ListItem button component={Link} to="/">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
-                <ListItemText primary="Home"/>
+                <ListItemText primary="Add User"/>
               </ListItem>
               <ListItem button component={Link} to="/page2">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
-                <ListItemText primary="Page2"/>
+                <ListItemText primary="Face Recognition"/>
               </ListItem>
-              <ListItem button component={Link} to="/page3">
+              {/* <ListItem button component={Link} to="/page3">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
                 <ListItemText primary="Page3"/>
-              </ListItem>
+              </ListItem> */}
             </List>
         </Drawer>
 
@@ -134,14 +134,14 @@ function App() {
             <div> {/* CONTENT PAGES HERE */}
               <Switch>
                 <Route exact path="/">
-                  <DetectionPage/>
-                </Route>
-                <Route path="/page2">
                   <UploadPage/>
                 </Route>
-                <Route path="/page3">
-                  <RecognitionPage/>
+                <Route path="/page2">
+                  <DetectionPage/>
                 </Route>
+                {/* <Route path="/page3">
+                  <RecognitionPage/>
+                </Route> */}
               </Switch>
             </div>
             
