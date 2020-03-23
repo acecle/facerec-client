@@ -131,7 +131,7 @@ class WebcamDetection extends Component {
     render() {
         return (
             <div>
-                <video ref={this.videoTag} autoPlay/>
+                <video ref={this.videoTag} autoPlay playsInline/>
                 <p ref={this.textRef}>Found: 0</p>
                 <img ref={this.imageTag} alt="face" hidden></img>
                 <p ref={this.faceTextRef}>Unknown Face</p>

@@ -113,7 +113,7 @@ class UploadDetection extends Component {
         const isPlaying = this.state.isPlaying;
         return (
             <div>
-                <video ref={this.videoTag} autoPlay/>
+                <video ref={this.videoTag} autoPlay playsInline/>
                 <br></br>
                 <button onClick={this.picture}>{isPlaying ? 'Take Picture' : 'Take Again'}</button>
                 <br/><br/>
