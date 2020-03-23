@@ -42,14 +42,14 @@ class UploadDetection extends Component {
 
         axios({
             method: 'post',
-            url: 'https://acecle-facerec-test-server.herokuapp.com/upload', //http://localhost:5000/upload
+            url: 'http://localhost:5000/upload', //https://acecle-facerec-test-server.herokuapp.com/upload
             data: bodyFormData,
             headers: {
                 'Content-Type': File
             }
         }).then((response) => {
             console.log(response.data)
-            if(response.data === "True") {
+            if(response.data !== "False") {
                 this.outputTag.current.innerText = "Success! Your code is: " + response.data;
             } else {
                 this.outputTag.current.innerText = "Failed to add user to the system, please try again!";

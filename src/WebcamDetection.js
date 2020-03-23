@@ -8,6 +8,8 @@ class WebcamDetection extends Component {
     videoWidth = 400;
     videoHeight = 400;
 
+    code = 0;
+
     constructor(props) {
         super(props);
         this.videoTag = React.createRef();
@@ -30,7 +32,7 @@ class WebcamDetection extends Component {
 
     componentDidMount() {
         let variable = prompt("Enter your code: ");
-        console.log(variable)
+        this.code = variable;
 
         if(!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
             navigator.mediaDevices
@@ -77,7 +79,7 @@ class WebcamDetection extends Component {
 
                 this.sendImageToServer(imageData);
             }
-        }, 1000)
+        }, 500)
     }
 
     sendImageToServer(imageData) {
@@ -87,17 +89,22 @@ class WebcamDetection extends Component {
         let bodyFormData = new FormData();
         let name = new Date().toLocaleString() + ".png";
         bodyFormData.append('file', file, name);
+        bodyFormData.append("expected", this.code);
 
         axios({
             method: 'post',
-            url: 'https://acecle-facerec-test-server.herokuapp.com/', //http://localhost:5000
+            url: 'http://localhost:5000', //https://acecle-facerec-test-server.herokuapp.com/
             data: bodyFormData,
             headers: {
                 'Content-Type': File
             }
         }).then((response) => {
-            console.log(response.data)
-            this.faceTextRef.current.innerText = response.data;
+            if(this.code == response.data) {
+                this.faceTextRef.current.innerText = "Found " + response.data + ", Face Recognised!";
+            } else {
+                this.faceTextRef.current.innerText = "Found " + response.data + ", Face Incorrectly Recognised";
+            }
+            
         }).catch((response) => {
             console.log(response);
         })
