@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e45c654f771152462929adedd5aa6650",
+    "revision": "361acd1e106fbe57c8e67cd4452db92d",
     "url": "/facerec-client/index.html"
   },
   {
-    "revision": "c0b19c47765f15968975",
+    "revision": "f86cbe0b86ce9a0eb20f",
     "url": "/facerec-client/static/css/main.76e27cc9.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/facerec-client/static/js/2.f4042acc.chunk.js.LICENSE"
   },
   {
-    "revision": "c0b19c47765f15968975",
-    "url": "/facerec-client/static/js/main.89c09ceb.chunk.js"
+    "revision": "f86cbe0b86ce9a0eb20f",
+    "url": "/facerec-client/static/js/main.6360e39c.chunk.js"
   },
   {
     "revision": "27c003f7423061b01c68",
