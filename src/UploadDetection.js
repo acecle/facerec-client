@@ -13,7 +13,7 @@ class UploadDetection extends Component {
         this.textTag = React.createRef();
         this.outputTag = React.createRef();
         
-        this.state = {isPlaying: true};
+        this.state = {isPlaying: true, isDisabled: false};
     }
 
     componentDidMount() {
@@ -49,6 +49,7 @@ class UploadDetection extends Component {
             }
         }).then((response) => {
             console.log(response.data)
+            this.setState({isDisabled: false})
             if(response.data !== "False") {
                 this.outputTag.current.innerText = "Success! Your code is: " + response.data;
             } else {
@@ -84,6 +85,7 @@ class UploadDetection extends Component {
         // console.log(value);
 
         if(this.currentImage !== null && this.state.isPlaying === false) {
+            this.setState({isDisabled: true})
             this.sendImageToServer(this.currentImage);
         }
         
@@ -111,6 +113,7 @@ class UploadDetection extends Component {
     render() {
         
         const isPlaying = this.state.isPlaying;
+        const isDisabled = this.state.isDisabled;
         return (
             <div>
                 <video ref={this.videoTag} autoPlay playsInline/>
@@ -118,7 +121,7 @@ class UploadDetection extends Component {
                 <button onClick={this.picture}>{isPlaying ? 'Take Picture' : 'Take Again'}</button>
                 <br/><br/>
                 {/* <input type="text" ref={e => this.textTag = e} /> */}
-                <button onClick={this.submit}>Submit</button>
+                <button onClick={this.submit} disabled={isDisabled ? 'disabled' : ''}>Submit</button>
                 <p ref={this.outputTag}></p>
             </div>
         )
