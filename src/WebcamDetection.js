@@ -7,8 +7,9 @@ class WebcamDetection extends Component {
     intervalID = 0;
     videoWidth = 400;
     videoHeight = 400;
-
-    code = 0;
+    
+    //TESTS
+    //code = 0;
 
     constructor(props) {
         super(props);
@@ -31,8 +32,9 @@ class WebcamDetection extends Component {
     }
 
     componentDidMount() {
-        let variable = prompt("Enter your code: ");
-        this.code = variable;
+        //TESTS
+        // let variable = prompt("Enter your code: ");
+        // this.code = variable;
 
         if(!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
             navigator.mediaDevices
@@ -89,7 +91,9 @@ class WebcamDetection extends Component {
         let bodyFormData = new FormData();
         let name = new Date().toLocaleString() + ".png";
         bodyFormData.append('file', file, name);
-        bodyFormData.append("expected", this.code);
+
+        //TESTS
+        //bodyFormData.append("expected", this.code);
 
         axios({
             method: 'post',

@@ -32,13 +32,13 @@ class UploadDetection extends Component {
         }
     }
 
-    sendImageToServer(imageData) {
+    sendImageToServer(imageData, value) {
         let blobData = this.dataURItoBlob(imageData);
         let file = new File([blobData], "image.png")
 
         let bodyFormData = new FormData();
         //let name = new Date().toLocaleString() + ".png";
-        bodyFormData.append('file', file, "value"); //TODO: change value back to variable passed to function after tests complete
+        bodyFormData.append('file', file, value); //TODO: change value back to variable passed to function after tests complete
 
         axios({
             method: 'post',
@@ -51,7 +51,7 @@ class UploadDetection extends Component {
             console.log(response.data)
             this.setState({isDisabled: false})
             if(response.data !== "False") {
-                this.outputTag.current.innerText = "Success! Your code is: " + response.data;
+                this.outputTag.current.innerText = "Success! Added user: " + response.data;
             } else {
                 this.outputTag.current.innerText = "Failed to add user to the system, please try again!";
             }
@@ -81,12 +81,12 @@ class UploadDetection extends Component {
 
     submit = e => {
         e.preventDefault();
-        // let value = this.textTag.value;
-        // console.log(value);
+        let value = this.textTag.value;
+        //console.log(value);
 
         if(this.currentImage !== null && this.state.isPlaying === false) {
             this.setState({isDisabled: true})
-            this.sendImageToServer(this.currentImage);
+            this.sendImageToServer(this.currentImage, value);
         }
         
     }
@@ -120,7 +120,7 @@ class UploadDetection extends Component {
                 <br></br>
                 <button onClick={this.picture}>{isPlaying ? 'Take Picture' : 'Take Again'}</button>
                 <br/><br/>
-                {/* <input type="text" ref={e => this.textTag = e} /> */}
+                <input type="text" ref={e => this.textTag = e} />
                 <button onClick={this.submit} disabled={isDisabled ? 'disabled' : ''}>Submit</button>
                 <p ref={this.outputTag}></p>
             </div>

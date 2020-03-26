@@ -120,10 +120,10 @@ function App() {
                 <ListItemIcon><InboxIcon/></ListItemIcon>
                 <ListItemText primary="Face Recognition"/>
               </ListItem>
-              {/* <ListItem button component={Link} to="/page3">
+              <ListItem button component={Link} to="/page3">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
-                <ListItemText primary="Page3"/>
-              </ListItem> */}
+                <ListItemText primary="Recognitions"/>
+              </ListItem>
             </List>
         </Drawer>
 
@@ -139,9 +139,9 @@ function App() {
                 <Route path="/page2">
                   <DetectionPage/>
                 </Route>
-                {/* <Route path="/page3">
+                <Route path="/page3">
                   <RecognitionPage/>
-                </Route> */}
+                </Route>
               </Switch>
             </div>
             
