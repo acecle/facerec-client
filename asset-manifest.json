@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/facerec-client/static/css/main.76e27cc9.chunk.css",
-    "main.js": "/facerec-client/static/js/main.a3f7da9e.chunk.js",
-    "main.js.map": "/facerec-client/static/js/main.a3f7da9e.chunk.js.map",
+    "main.js": "/facerec-client/static/js/main.b25ed24b.chunk.js",
+    "main.js.map": "/facerec-client/static/js/main.b25ed24b.chunk.js.map",
     "runtime-main.js": "/facerec-client/static/js/runtime-main.28cb0295.js",
     "runtime-main.js.map": "/facerec-client/static/js/runtime-main.28cb0295.js.map",
-    "static/js/2.db0dd995.chunk.js": "/facerec-client/static/js/2.db0dd995.chunk.js",
-    "static/js/2.db0dd995.chunk.js.map": "/facerec-client/static/js/2.db0dd995.chunk.js.map",
+    "static/js/2.79036c43.chunk.js": "/facerec-client/static/js/2.79036c43.chunk.js",
+    "static/js/2.79036c43.chunk.js.map": "/facerec-client/static/js/2.79036c43.chunk.js.map",
     "index.html": "/facerec-client/index.html",
-    "precache-manifest.eca261740c12457313a7365d18e519f5.js": "/facerec-client/precache-manifest.eca261740c12457313a7365d18e519f5.js",
+    "precache-manifest.a078fb26c9a1b804374c898b9a617b81.js": "/facerec-client/precache-manifest.a078fb26c9a1b804374c898b9a617b81.js",
     "service-worker.js": "/facerec-client/service-worker.js",
     "static/css/main.76e27cc9.chunk.css.map": "/facerec-client/static/css/main.76e27cc9.chunk.css.map",
-    "static/js/2.db0dd995.chunk.js.LICENSE": "/facerec-client/static/js/2.db0dd995.chunk.js.LICENSE"
+    "static/js/2.79036c43.chunk.js.LICENSE": "/facerec-client/static/js/2.79036c43.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.28cb0295.js",
-    "static/js/2.db0dd995.chunk.js",
+    "static/js/2.79036c43.chunk.js",
     "static/css/main.76e27cc9.chunk.css",
-    "static/js/main.a3f7da9e.chunk.js"
+    "static/js/main.b25ed24b.chunk.js"
   ]
 }
