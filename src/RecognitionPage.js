@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import axios from 'axios';
+import RecognitionTable from './RecognitionTable';
 
 export function RecognitionPage () {
 
@@ -32,22 +32,10 @@ export function RecognitionPage () {
             <Paper className={classes.paperTest}>
                 <Typography variant="h5" noWrap>Recognition Page</Typography>
                 <Divider className ={classes.topDivider}/>
-                <GetResponses/>
+                <RecognitionTable className={classes}/>
             </Paper>
         </div>
         
     );
 
-}
-
-function GetResponses() {
-    axios({
-        method: 'get',
-        url: 'https://acecle-facerec-test-server.herokuapp.com/recognitions', //http://localhost:5000/recognitions
-    }).then((response) => {
-        console.log(response.data)
-    }).catch((response) => {
-        console.log(response);
-    });
-    return null
 }
