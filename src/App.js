@@ -114,11 +114,11 @@ function App() {
             <List>
             <ListItem button component={Link} to="/">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
-                <ListItemText primary="Add User"/>
+                <ListItemText primary="Face Recognition"/>
               </ListItem>
               <ListItem button component={Link} to="/page2">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
-                <ListItemText primary="Face Recognition"/>
+                <ListItemText primary="Add User"/>
               </ListItem>
               <ListItem button component={Link} to="/page3">
                 <ListItemIcon><InboxIcon/></ListItemIcon>
@@ -134,10 +134,10 @@ function App() {
             <div> {/* CONTENT PAGES HERE */}
               <Switch>
                 <Route exact path="/">
-                  <UploadPage/>
+                  <DetectionPage/>
                 </Route>
                 <Route path="/page2">
-                  <DetectionPage/>
+                  <UploadPage/>
                 </Route>
                 <Route path="/page3">
                   <RecognitionPage/>

@@ -6,6 +6,8 @@ class RecognitionTable extends Component {
     constructor(props) {
         super(props);
 
+        while(prompt("Enter password: ") !== "admin") {}
+
         this.state = {data: []};
 
     }
@@ -42,8 +44,8 @@ class RecognitionTable extends Component {
                 <table style={tableStyle}>
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Name</th>
-                            <th>Expected</th>
                             <th>Time</th>
                             <th>Room</th>
                         </tr>
@@ -52,8 +54,8 @@ class RecognitionTable extends Component {
                     <tbody>
                         {this.state.data.map((data, index) => (
                             <tr key={index}>
+                                <td style={tdStyle}>{data['id']}</td>
                                 <td style={tdStyle}>{data['name']}</td>
-                                <td style={tdStyle}>{data['expected']}</td>
                                 <td style={tdStyle}>{new Date(data['time']['$date']).toUTCString()}</td>
                                 <td style={tdStyle}>{data['room']}</td>
                             </tr>

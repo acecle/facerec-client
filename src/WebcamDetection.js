@@ -13,6 +13,7 @@ class WebcamDetection extends Component {
 
     constructor(props) {
         super(props);
+        this.roomTag = React.createRef();
         this.videoTag = React.createRef();
         this.textRef = React.createRef();
         this.imageTag = React.createRef();
@@ -90,10 +91,9 @@ class WebcamDetection extends Component {
 
         let bodyFormData = new FormData();
         let name = new Date().toLocaleString() + ".png";
+        let room = this.roomTag.value;
         bodyFormData.append('file', file, name);
-
-        //TESTS
-        //bodyFormData.append("expected", this.code);
+        bodyFormData.append('room', room);
 
         axios({
             method: 'post',
@@ -106,7 +106,7 @@ class WebcamDetection extends Component {
             if(this.code == response.data) {
                 this.faceTextRef.current.innerText = "Found " + response.data + ", Face Recognised!";
             } else {
-                this.faceTextRef.current.innerText = "Found " + response.data + ", Face Incorrectly Recognised";
+                this.faceTextRef.current.innerText = "Found " + response.data + "";
             }
             
         }).catch((response) => {
@@ -114,7 +114,7 @@ class WebcamDetection extends Component {
         })
     }
 
-    dataURItoBlob(dataURI) { //https://gist.github.com/poeticninja/0e4352bc80bc34fad6f7
+    dataURItoBlob(dataURI) {
 
         // convert base64/URLEncoded data component to raw binary data held in a string
         var byteString;
@@ -122,9 +122,11 @@ class WebcamDetection extends Component {
             byteString = atob(dataURI.split(',')[1]);
         else
             byteString = unescape(dataURI.split(',')[1]);
+
         // separate out the mime component
         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        // write the bytes of the string to a typed array
+
+        // write the bytes of the string to an array
         var ia = new Uint8Array(byteString.length);
         for (var i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
@@ -135,6 +137,8 @@ class WebcamDetection extends Component {
     render() {
         return (
             <div>
+                Room: <input type="text" ref={e => this.roomTag = e} />
+                <br/><br/>
                 <video ref={this.videoTag} autoPlay playsInline/>
                 <p ref={this.textRef}>Found: 0</p>
                 <img ref={this.imageTag} alt="face" hidden></img>

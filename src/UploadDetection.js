@@ -10,9 +10,12 @@ class UploadDetection extends Component {
     constructor(props) {
         super(props);
         this.videoTag = React.createRef();
-        this.textTag = React.createRef();
+        this.textTagID = React.createRef();
+        this.textTagName = React.createRef();
         this.outputTag = React.createRef();
         
+        while(prompt("Enter password: ") !== "admin") {}
+
         this.state = {isPlaying: true, isDisabled: false};
     }
 
@@ -32,13 +35,13 @@ class UploadDetection extends Component {
         }
     }
 
-    sendImageToServer(imageData, value) {
+    sendImageToServer(imageData, valueID, valueName) {
         let blobData = this.dataURItoBlob(imageData);
         let file = new File([blobData], "image.png")
 
         let bodyFormData = new FormData();
-        //let name = new Date().toLocaleString() + ".png";
-        bodyFormData.append('file', file, value); //TODO: change value back to variable passed to function after tests complete
+        bodyFormData.append('file', file, valueID);
+        bodyFormData.append('name', valueName);
 
         axios({
             method: 'post',
@@ -61,7 +64,7 @@ class UploadDetection extends Component {
         })
     }
 
-    dataURItoBlob(dataURI) { //https://gist.github.com/poeticninja/0e4352bc80bc34fad6f7
+    dataURItoBlob(dataURI) {
 
         // convert base64/URLEncoded data component to raw binary data held in a string
         var byteString;
@@ -69,9 +72,11 @@ class UploadDetection extends Component {
             byteString = atob(dataURI.split(',')[1]);
         else
             byteString = unescape(dataURI.split(',')[1]);
+
         // separate out the mime component
         var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-        // write the bytes of the string to a typed array
+
+        // write the bytes of the string to an array
         var ia = new Uint8Array(byteString.length);
         for (var i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
@@ -81,12 +86,12 @@ class UploadDetection extends Component {
 
     submit = e => {
         e.preventDefault();
-        let value = this.textTag.value;
-        //console.log(value);
+        let valueID = this.textTagID.value;
+        let valueName = this.textTagName.value;
 
         if(this.currentImage !== null && this.state.isPlaying === false) {
             this.setState({isDisabled: true})
-            this.sendImageToServer(this.currentImage, value);
+            this.sendImageToServer(this.currentImage, valueID, valueName);
         }
         
     }
@@ -120,7 +125,10 @@ class UploadDetection extends Component {
                 <br></br>
                 <button onClick={this.picture}>{isPlaying ? 'Take Picture' : 'Take Again'}</button>
                 <br/><br/>
-                <input type="text" ref={e => this.textTag = e} />
+                ID: <input type="text" ref={e => this.textTagID = e} />
+                <br/><br/>
+                Name: <input type="text" ref={e => this.textTagName = e} />
+                <br/><br/>
                 <button onClick={this.submit} disabled={isDisabled ? 'disabled' : ''}>Submit</button>
                 <p ref={this.outputTag}></p>
             </div>
